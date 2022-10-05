@@ -21,5 +21,6 @@
             
             <input type="Submit" name="login" value="Login">
         </form>
+        <b>${message}</b>
     </body>
 </html>
