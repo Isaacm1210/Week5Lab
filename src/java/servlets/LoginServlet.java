@@ -21,7 +21,18 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        
+        HttpSession session = request.getSession();
+        String logout = request.getParameter("logout");
+        
+        if (logout != null){
+            request.setAttribute("message", "You Have Successfully Been Logged Out");
+            session.invalidate();
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
+        else{
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
     }
 
     
@@ -52,9 +63,9 @@ public class LoginServlet extends HttpServlet {
         else{
             request.setAttribute("username", username);
             request.setAttribute("password", password);
+            request.setAttribute("message", "Password and/or Username is Invalid");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
-        
         
         
     }

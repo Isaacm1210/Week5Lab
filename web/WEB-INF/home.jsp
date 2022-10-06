@@ -16,6 +16,6 @@
         
         <h2>Hello ${username}</h2>
         
-        <a href="login" method="get" value="logout">Log Out</a>
+        <a href="login?logout" name=="logout">Log Out</a>
     </body>
 </html>

@@ -16,8 +16,8 @@
         
         <form action="login" method="post">
             
-            Username: <input type="text" name="username" value=""><br>
-            Password: <input type="password" name="password" value=""><br>
+            Username: <input type="text" name="username" value="${username}"><br>
+            Password: <input type="password" name="password" value="${password}"><br>
             
             <input type="Submit" name="login" value="Login">
         </form>
