@@ -2,8 +2,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +22,17 @@ public class LoginServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         String logout = request.getParameter("logout");
+        String loggedin = (String)session.getAttribute("loggedin");
         
         if (logout != null){
             request.setAttribute("message", "You Have Successfully Been Logged Out");
             session.invalidate();
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
+        
+        
+        if(loggedin == "true"){
+            response.sendRedirect("home");
         }
         else{
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -58,6 +62,8 @@ public class LoginServlet extends HttpServlet {
         
         if (validity.equals("valid")){
             session.setAttribute("username", username);
+            String loggedin = "true";
+            session.setAttribute("loggedin", loggedin);
             response.sendRedirect("home");
         }
         else{

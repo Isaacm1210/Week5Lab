@@ -29,7 +29,7 @@ public class AccountService {
     public String login(String username, String password){
        String valid;
        
-       if (this.username1.equals(username) || this.username2.equals(username) && this.password.equals(password)){
+       if (this.password.equals(password) && this.username1.equals(username) || this.username2.equals(username)){
            valid = "valid";
            return valid;
        }
