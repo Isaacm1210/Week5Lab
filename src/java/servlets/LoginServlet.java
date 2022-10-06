@@ -2,6 +2,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +30,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String username = (String)request.getAttribute("username");
-        String password = (String)request.getAttribute("password");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String validity = "invalid";
         
         
@@ -46,6 +48,11 @@ public class LoginServlet extends HttpServlet {
         if (validity.equals("valid")){
             session.setAttribute("username", username);
             response.sendRedirect("home");
+        }
+        else{
+            request.setAttribute("username", username);
+            request.setAttribute("password", password);
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
         
         

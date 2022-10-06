@@ -14,8 +14,8 @@
     <body>
         <h1>Home Page</h1>
         
-        <h2>Hello </h2>
+        <h2>Hello ${username}</h2>
         
-        <a href="login" method="get">Log Out</a>
+        <a href="login" method="get" value="logout">Log Out</a>
     </body>
 </html>
